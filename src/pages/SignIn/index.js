@@ -4,9 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import SubmitButton from '~/components/Button';
 import { Creators as AuthActions } from '~/store/modules/auth/duck';
 
-import { Container, TextInput } from './styles';
+import {
+  Container,
+  TextInput,
+  TouchableForgot,
+  TextForgot,
+  TextSignUp,
+  TextTerm,
+  TextUnderline,
+} from './styles';
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   const dispatch = useDispatch();
   const passwordRef = useRef();
 
@@ -20,30 +28,51 @@ const SignIn = () => {
   }
 
   return (
-    <Container>
-      <TextInput
-        keyboardType="email-address"
-        autoCorrect={false}
-        autoCapitalize="none"
-        placeholder="Digite seu e-mail"
-        returnKeyType="next"
-        onSubmitEditing={() => passwordRef.current.focus()}
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        secureTextEntry
-        placeholder="Digite sua senha"
-        ref={passwordRef}
-        returnKeyType="send"
-        onSubmitEditing={handleSubmit}
-        value={password}
-        onChangeText={setPassword}
-      />
-      <SubmitButton loading={loading} onPress={handleSubmit}>
-        Entrar
-      </SubmitButton>
-    </Container>
+    <>
+      <Container>
+        <TextInput
+          keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Endereço de e-mail"
+          placeholderTextColor="#777"
+          returnKeyType="next"
+          onSubmitEditing={() => passwordRef.current.focus()}
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TextInput
+          secureTextEntry
+          placeholder="Senha"
+          ref={passwordRef}
+          returnKeyType="send"
+          placeholderTextColor="#777"
+          onSubmitEditing={handleSubmit}
+          value={password}
+          onChangeText={setPassword}
+        />
+        <TouchableForgot onPress={() => navigation.navigate('Forgot')}>
+          <TextForgot>Esqueceu sua senha?</TextForgot>
+        </TouchableForgot>
+        <SubmitButton loading={loading} onPress={handleSubmit}>
+          ENTRAR
+        </SubmitButton>
+        <TextSignUp>
+          Não está registrado?&nbsp;
+          <TextUnderline
+            color="#000"
+            onPress={() => navigation.navigate('Forgot')}
+          >
+            Junte-se a nós.
+          </TextUnderline>
+        </TextSignUp>
+      </Container>
+      <TextTerm>
+        Ao fazer login, você concorda com a{' '}
+        <TextUnderline>Política de Privacidade</TextUnderline> e com os{' '}
+        <TextUnderline>Termos de Uso</TextUnderline> do MyHobbies.
+      </TextTerm>
+    </>
   );
 };
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import SubmitButton from '~/components/Button';
 import { Creators as AuthActions } from '~/store/modules/auth/duck';
 
-const Dashboard = () => {
+const Dashboard = ({ navigation }) => {
   const dispatch = useDispatch();
 
   function handleSubmit() {
@@ -14,6 +14,10 @@ const Dashboard = () => {
 
   return (
     <View>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Teste')}
+      />
       <SubmitButton onPress={handleSubmit}>Sair</SubmitButton>
     </View>
   );
