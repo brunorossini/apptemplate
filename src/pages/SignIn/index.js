@@ -70,7 +70,7 @@ const SignIn = ({ navigation }) => {
       <TextTerm>
         Ao fazer login, você concorda com a{' '}
         <TextUnderline>Política de Privacidade</TextUnderline> e com os{' '}
-        <TextUnderline>Termos de Uso</TextUnderline> do MyHobbies.
+        <TextUnderline>Termos de Uso</TextUnderline> do apptemplate.
       </TextTerm>
     </>
   );
